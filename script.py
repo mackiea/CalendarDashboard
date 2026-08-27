@@ -1,6 +1,5 @@
 import datetime
 import os.path
-from calendar import Calendar
 from enum import Enum
 
 from google.auth.transport.requests import Request
@@ -14,7 +13,6 @@ WIDTH = 1920
 HEIGHT = 1200
 _weekday_length = WIDTH / 7
 import calendar
-
 
 _white = (255, 255, 255)
 _background_color = (200, 200, 255)
