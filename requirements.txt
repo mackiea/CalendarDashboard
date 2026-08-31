@@ -7,3 +7,4 @@ googleapis-common-protos==1.75.1
 
 pgzero
 pygame-ce
+python-dateutil

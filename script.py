@@ -1,5 +1,7 @@
 import datetime
 import os.path
+from calendar import Calendar
+from datetime import tzinfo
 from enum import Enum
 
 from google.auth.transport.requests import Request
@@ -9,8 +11,11 @@ from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
 import pgzrun
 import pygame
+from dateutil import parser
+
 WIDTH = 1920
 HEIGHT = 1200
+GRIDHEIGHT = 1100
 _weekday_length = WIDTH / 7
 import calendar
 
@@ -19,10 +24,18 @@ _background_color = (200, 200, 255)
 _text_colour = (0, 0, 0)
 _green = (0, 255, 0)
 _blue = (0, 0, 128)
+BLACK = (0, 0, 0)
 _initialized = False
 _monthText = None
 
 _weekday_name_text = []
+
+class Day:
+    events = []
+    def __init__(self, events):
+        self.events = events
+
+_days = []
 
 class Mode(Enum):
     Month=1
@@ -30,10 +43,11 @@ class Mode(Enum):
     Day=3
 _mode = Mode.Month
 _day_in_focus = datetime.date.today()
+_service = None
+_family_calendar_id = None
 
 def draw():
     screen.fill(_background_color)
-    screen.draw.circle((400, 300), 30, 'white')
     if _monthText:
         month_rect = _monthText.get_rect()
         month_rect.center = (WIDTH/2, 50)
@@ -46,19 +60,71 @@ def draw():
         screen.blit(weekday_name_text, rect)
         i+=_weekday_length
 
+    # Draw days.
+    weekday_of_1st, day_count = calendar.monthrange(_day_in_focus.year, _day_in_focus.month)
+    rowCount = 5
+    if weekday_of_1st == calendar.SUNDAY and day_count == 28:
+        rowCount = 4
+    if (weekday_of_1st == calendar.FRIDAY and day_count == 31) or (weekday_of_1st == calendar.SATURDAY and day_count >= 30):
+        rowCount = 6
+
+    column = weekday_of_1st + 1
+    row = 0
+    width = WIDTH / 7
+    height = GRIDHEIGHT / rowCount
+    for d0 in range(day_count):
+        day = d0 + 1
+        x1 = width * column
+        y1 = height * row + HEIGHT-GRIDHEIGHT
+        screen.draw.rect(Rect((x1, y1),(width, height)), BLACK)
+
+        # Put day number.
+        font = pygame.font.Font(filename='freesansbold.ttf', size=24)
+        day_number = font.render(str(day), antialias=True, bgcolor=_background_color, color=_text_colour)
+        rect = day_number.get_rect()
+        rect.left = x1 + 5
+        rect.top = y1 + 5
+        screen.blit(day_number, rect)
+
+        # Put events.
+        day_events = _days[d0]
+        line = 0
+        for event in day_events.events:
+            print(str(event))
+            is_all_day = False
+            start = event["start"].get("dateTime")
+            if start is None:
+                start = event["start"].get("date")
+                is_all_day = True
+
+            print(str(start))
+
+            start_dt = parser.parse(start).astimezone()
+            font.set_point_size(18)
+            if is_all_day:
+                event = font.render(str(event["summary"]), antialias=True, bgcolor=_background_color, color=_text_colour)
+            else:
+                event = font.render(str(start_dt.hour) + ":{:02d}".format(start_dt.minute) + " " + str(event["summary"]),
+                                    antialias=True, bgcolor=_background_color, color=_text_colour)
+            rect = event.get_rect()
+            rect.left = x1 + 40
+            rect.top = y1 + 5 + line * 20
+            screen.blit(event, rect)
+
+            line = line + 1
+
+        column = column + 1
+
+        if (column == 7):
+            column = 0
+            row = row + 1
+
 
     # for days_of_month in calendar.monthrange(year=_day_in_focus.year, month=_day_in_focus.month):
     #    pygame.draw.
 
 # If modifying these scopes, delete the file token.json.
 SCOPES = ["https://www.googleapis.com/auth/calendar.readonly"]
-
-def drawz(events):
-    # Prints the start and name of the next 10 events
-    for event in events:
-      start = event["start"].get("dateTime", event["start"].get("date"))
-      print(start, event["summary"])
-
 
 def update():
     if not _initialized:
@@ -102,11 +168,12 @@ def initialize():
       token.write(creds.to_json())
 
   try:
-    service = build("calendar", "v3", credentials=creds)
+    global _service
+    _service = build("calendar", "v3", credentials=creds)
 
     # Call the Calendar API.
     # Get available calendars.
-    calendar_list = service.calendarList().list().execute()
+    calendar_list = _service.calendarList().list().execute()
     calendars = calendar_list.get("items", [])
 
     if not calendars:
@@ -115,38 +182,43 @@ def initialize():
 
     print("Calendars:")
     # Prints the start and name of the next 10 events
-    family_calendar_id = None
+    global _family_calendar_id
     for cal in calendars:
       print(cal)
       if cal["summary"] == "Family":
-          family_calendar_id = cal["id"]
+          _family_calendar_id = cal["id"]
 
-    if not family_calendar_id:
+    if not _family_calendar_id:
         print("No family calendar found")
         return
 
-    # Get calendar events.
-    now = datetime.datetime.now(tz=datetime.timezone.utc).isoformat()
-    print("Getting the upcoming 10 events")
-    events_result = (
-        service.events()
-        .list(
-#             calendarId="primary",
-            calendarId=family_calendar_id,
-            timeMin=now,
-            maxResults=10,
-            singleEvents=True,
-            orderBy="startTime",
-        )
-        .execute()
-    )
-    events = events_result.get("items", [])
-    if not events:
-      print("No upcoming events found.")
-      return
-
+    refresh_calendar()
   except HttpError as error:
     print(f"An error occurred: {error}")
 
+def refresh_calendar():
+    # Get calendar events.
+    print("Getting the events of this month")
+    weekday_of_1st, day_count = calendar.monthrange(_day_in_focus.year, _day_in_focus.month)
+    for day in range(day_count):
+        day_dt = datetime.datetime(tzinfo=datetime.timezone.utc, year=_day_in_focus.year,
+                                               month=_day_in_focus.month, day=day+1)
+        day_iso = day_dt.isoformat()
+        tomorrow_iso = (day_dt + datetime.timedelta(days=1)).isoformat()
+        events_result = (
+            _service.events()
+            .list(
+    #             calendarId="primary",
+                calendarId=_family_calendar_id,
+                timeMin=day_iso,
+                timeMax=tomorrow_iso,
+                maxResults=10,
+                singleEvents=True,
+                orderBy="startTime",
+            )
+            .execute()
+        )
+        day_events = Day(events_result.get("items", []))
+        _days.append(day_events)
 
 pgzrun.go()
