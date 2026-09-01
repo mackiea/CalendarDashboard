@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5c921965-7878-43d7-a134-39536b67de38" name="Changes" comment="Added basic code. Connects to Google Calendar and renders via Pygame-Zero over Pygame-CE.">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+    <list default="true" id="5c921965-7878-43d7-a134-39536b67de38" name="Changes" comment="Now displays month and events, very roughly.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ct.zip" beforeDir="false" afterPath="$PROJECT_DIR$/ct.zip" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/script.py" beforeDir="false" afterPath="$PROJECT_DIR$/script.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -136,7 +133,15 @@
       <option name="project" value="LOCAL" />
       <updated>1787585473213</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Now displays month and events, very roughly.">
+      <option name="closed" value="true" />
+      <created>1788136162662</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1788136162662</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -186,7 +191,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Revert &quot;Initial commit&quot;&#10;&#10;This reverts commit f88e43fbba608df862740661e5c62972407896bd." />
     <MESSAGE value="Added basic code. Connects to Google Calendar and renders via Pygame-Zero over Pygame-CE." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added basic code. Connects to Google Calendar and renders via Pygame-Zero over Pygame-CE." />
+    <MESSAGE value="Now displays month and events, very roughly." />
+    <option name="LAST_COMMIT_MESSAGE" value="Now displays month and events, very roughly." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
