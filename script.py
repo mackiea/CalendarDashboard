@@ -15,18 +15,28 @@ import pygame
 from dateutil import parser
 import dateutil
 
-WIDTH = 1920
-HEIGHT = 1200
-GRIDHEIGHT = 1080
+# WIDTH = 1920
+# HEIGHT = 1200
+# GRIDHEIGHT = 1080
+
+# WIDTH = 1920
+# HEIGHT = 1080
+# GRIDHEIGHT = HEIGHT-120
+
+WIDTH = 1280
+HEIGHT = 720
+GRIDHEIGHT = HEIGHT-120
+
 _weekday_length = WIDTH / 7
 import calendar
 
-_white = (255, 255, 255)
-_background_color = (200, 200, 255)
-_text_colour = (0, 0, 0)
-_green = (0, 255, 0)
-_blue = (0, 0, 128)
+WHITE = (255, 255, 255)
+BACKGROUND_COLOUR = (200, 200, 255)
+TEXT_COLOUR = (0, 0, 0)
+GREEN = (0, 255, 0)
+BLUE = (0, 0, 128)
 BLACK = (0, 0, 0)
+
 _initialized = False
 _monthText = None
 
@@ -50,14 +60,14 @@ _family_calendar_id = None
 _status = ""
 
 def draw():
-    screen.fill(_background_color)
+    screen.fill(BACKGROUND_COLOUR)
     if _monthText:
         month_rect = _monthText.get_rect()
         month_rect.center = (WIDTH/2, 50)
         screen.blit(_monthText, month_rect)
 
     # Draw eekdays.
-    width = 274 # WIDTH / 7
+    width = WIDTH / 7
     i=_weekday_length/2
     column = 0
     for weekday_name_text in _weekday_name_text:
@@ -65,7 +75,7 @@ def draw():
             column_colour = (200, 200, 100)
         else:
             column_colour = (200, 100, 200)
-        pygame.draw.rect(surface=screen.surface, rect=Rect((width * column, 80), (width, 1200)),
+        pygame.draw.rect(surface=screen.surface, rect=Rect((width * column, 80), (width, GRIDHEIGHT+40)),
                          color=column_colour,
                          border_radius=15
         )
@@ -104,7 +114,7 @@ def draw():
 
         # Put day number.
         font = pygame.font.Font(filename='freesansbold.ttf', size=24)
-        day_number = font.render(str(day), antialias=True, color=_text_colour)
+        day_number = font.render(str(day), antialias=True, color=TEXT_COLOUR)
         rect = day_number.get_rect()
         rect.left = x1 + 11
         rect.top = y1 + 8
@@ -125,12 +135,12 @@ def draw():
             # print(str(start))
 
             start_dt = parser.parse(start).astimezone()
-            font.set_point_size(18)
+            font.set_point_size(14)
             if is_all_day:
-                event = font.render(str(event["summary"]), antialias=True, color=_text_colour)
+                event = font.render(str(event["summary"]), antialias=True, color=TEXT_COLOUR)
             else:
                 event = font.render(str(start_dt.hour) + ":{:02d}".format(start_dt.minute) + " " + str(event["summary"]),
-                                    antialias=True, color=_text_colour)
+                                    antialias=True, color=TEXT_COLOUR)
             rect = event.get_rect()
             rect.left = x1 + 40
             rect.top = y1 + 5 + line * 20
@@ -144,7 +154,7 @@ def draw():
             row = row + 1
 
         if _status is not None:
-            status_line = font.render(_status, antialias=True, color=_text_colour)
+            status_line = font.render(_status, antialias=True, color=TEXT_COLOUR)
             rect = status_line.get_rect()
             rect.center = (WIDTH/2, HEIGHT/2)
             screen.blit(status_line, rect)
@@ -159,7 +169,7 @@ def update():
 
     global _monthText
     font = pygame.font.Font(filename='freesansbold.ttf', size=32)
-    _monthText = font.render(calendar.month_name[_day_in_focus.month], antialias=True, color=_text_colour)
+    _monthText = font.render(calendar.month_name[_day_in_focus.month], antialias=True, color=TEXT_COLOUR)
 
 def on_key_down(key):
     global _day_in_focus, _status
@@ -195,7 +205,7 @@ def initialize():
   for weekday in rectified_list:
       font = pygame.font.Font(filename='freesansbold.ttf', size=24)
       global _weekday_name_text
-      _weekday_name_text.append(font.render(weekday, antialias=True, color=_text_colour))
+      _weekday_name_text.append(font.render(weekday, antialias=True, color=TEXT_COLOUR))
 
   # Load in Google API credentials.
   if os.path.exists("token.json"):
