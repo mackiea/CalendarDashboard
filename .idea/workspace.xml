@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5c921965-7878-43d7-a134-39536b67de38" name="Changes" comment="Finished primary code. Calendar displays multiple events. Possible to switch to next &amp; previous months. Calendar auto-updates every minute.">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="5c921965-7878-43d7-a134-39536b67de38" name="Changes" comment="Set dimensions to 720p.">
       <change beforePath="$PROJECT_DIR$/script.py" beforeDir="false" afterPath="$PROJECT_DIR$/script.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -149,7 +148,15 @@
       <option name="project" value="LOCAL" />
       <updated>1788298788043</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Set dimensions to 720p.">
+      <option name="closed" value="true" />
+      <created>1788555383384</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1788555383384</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -201,7 +208,8 @@
     <MESSAGE value="Added basic code. Connects to Google Calendar and renders via Pygame-Zero over Pygame-CE." />
     <MESSAGE value="Now displays month and events, very roughly." />
     <MESSAGE value="Finished primary code. Calendar displays multiple events. Possible to switch to next &amp; previous months. Calendar auto-updates every minute." />
-    <option name="LAST_COMMIT_MESSAGE" value="Finished primary code. Calendar displays multiple events. Possible to switch to next &amp; previous months. Calendar auto-updates every minute." />
+    <MESSAGE value="Set dimensions to 720p." />
+    <option name="LAST_COMMIT_MESSAGE" value="Set dimensions to 720p." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

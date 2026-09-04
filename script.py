@@ -15,17 +15,20 @@ import pygame
 from dateutil import parser
 import dateutil
 
+# Laptop.
 # WIDTH = 1920
 # HEIGHT = 1200
 # GRIDHEIGHT = 1080
 
-# WIDTH = 1920
-# HEIGHT = 1080
-# GRIDHEIGHT = HEIGHT-120
-
-WIDTH = 1280
-HEIGHT = 720
+# 1080p.
+WIDTH = 1920
+HEIGHT = 1080
 GRIDHEIGHT = HEIGHT-120
+
+# 720p.
+# WIDTH = 1280
+# HEIGHT = 720
+# GRIDHEIGHT = HEIGHT-120
 
 _weekday_length = WIDTH / 7
 import calendar
