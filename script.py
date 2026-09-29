@@ -38,6 +38,11 @@ _service = None
 _family_calendar_id = None
 _status = ""
 
+#####################################################################
+
+def get_font():
+    return pygame.font.Font(pygame.font.match_font("ubuntu"), size=24)
+
 def draw():
     global settings
     screen.fill(settings.background_colour)
@@ -50,8 +55,7 @@ def draw():
     draw_days_of_month()
 
     if _status is not None:
-        font = pygame.font.Font(filename='freesansbold.ttf', size=24)
-        status_line = font.render(_status, antialias=True, color=settings.text_colour)
+        status_line = get_font().render(_status, antialias=True, color=settings.text_colour)
         rect = status_line.get_rect()
         rect.center = (WIDTH/2, HEIGHT/2)
         screen.blit(status_line, rect)
@@ -61,7 +65,8 @@ def update():
         initialize()
 
     global _monthText
-    font = pygame.font.Font(filename='freesansbold.ttf', size=32)
+    font = get_font()
+    font.set_point_size(32)
     _monthText = font.render(calendar.month_name[_day_in_focus.month], antialias=True, color=settings.text_colour)
 
 def on_key_down(key):
@@ -78,8 +83,6 @@ def on_key_down(key):
         refresh_calendar()
     _status = ""
 
-
-#####################################################################
 
 def draw_eekdays():
     i=_weekday_length/2
@@ -124,7 +127,7 @@ def draw_day_of_month(day, column, row, height, font):
     day_box = pygame.Rect((x1 + 1, y1 + 1), (_weekday_length - 1, height - 1))
     pygame.draw.rect(surface=screen.surface, rect=day_box, color=column_colour, border_radius=15)
 
-    def draw_day_of_month_event(event, line):
+    def draw_day_of_month_event(event, line, font):
         is_all_day = False
         start = event["start"].get("dateTime")
         if start is None:
@@ -154,13 +157,14 @@ def draw_day_of_month(day, column, row, height, font):
     day_events = _days[day-1]
     line = 0
     for event in day_events.events:
-        draw_day_of_month_event(event=event, line=line)
+        draw_day_of_month_event(event=event, line=line, font=font)
         line = line + 1
 
 
 
 def draw_days_of_month():
-    font = pygame.font.Font(filename='freesansbold.ttf', size=24)
+    # font = pygame.font.Font(filename='freesansbold.ttf', size=24)
+    font = get_font()
     weekday_of_1st, day_count = calendar.monthrange(_day_in_focus.year, _day_in_focus.month)
     row_count = 5
     if weekday_of_1st == calendar.SUNDAY and day_count == 28:
@@ -195,15 +199,17 @@ def initialize():
   _weekday_length = WIDTH / 7
 
   screen.surface = pygame.display.set_mode(size=(WIDTH, HEIGHT), flags=pygame.constants.FULLSCREEN)
+  modes = pygame.display.list_modes()
+  for m in modes:
+      print(m)
 
   # Set weekday headers.
   rectified_list = list(calendar.day_name)
   rectified_list.insert(0, rectified_list.pop(calendar.SUNDAY))
   for weekday in rectified_list:
-      font = pygame.font.Font(filename='freesansbold.ttf', size=24)
       global _weekday_name_text
       print(settings.text_colour)
-      _weekday_name_text.append(font.render(weekday, antialias=True, color=settings.text_colour))
+      _weekday_name_text.append(get_font().render(weekday, antialias=True, color=settings.text_colour))
   refresh_calendar()
   clock.schedule_interval(refresh_calendar, 60)
 
