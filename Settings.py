@@ -1,6 +1,5 @@
 import xml.etree.ElementTree as Xml
 
-from pipenv.patched.pip._internal import resolution
 from pygame import Color
 
 
