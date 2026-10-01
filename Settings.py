@@ -1,5 +1,6 @@
 import xml.etree.ElementTree as Xml
 
+from pipenv.patched.pip._internal import resolution
 from pygame import Color
 
 
@@ -21,9 +22,14 @@ class Settings:
                 w = resolution.get("WIDTH")
                 assert w is not None
                 self.width = int(w)
+
                 h = resolution.get("HEIGHT")
                 assert h is not None
                 self.height = int(h)
+
+                a = resolution.get("ADJUSTEDHEIGHT")
+                self.adjusted_height = int(a) if a else None
+
                 break
 
         colours = root.find("COLOURS")

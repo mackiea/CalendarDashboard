@@ -45,7 +45,8 @@ class CalendarDashboard:
         self.height = self.settings.height
         self.gridheight = self.height - 120
         self.weekday_length = self.width / 7
-        self.screen.surface = pygame.display.set_mode(size=(self.width, self.height), flags=pygame.constants.FULLSCREEN)
+        h = self.settings.adjusted_height if self.settings.adjusted_height else self.height
+        self.screen.surface = pygame.display.set_mode(size=(self.width, h), flags=pygame.constants.FULLSCREEN)
 
         # Set weekday headers.
         rectified_list = list(calendar.day_name)
@@ -59,7 +60,7 @@ class CalendarDashboard:
 
     @staticmethod
     def get_font() -> pygame.font.Font:
-        return pygame.font.Font(pygame.font.match_font("ubuntu"), size=24)
+        return pygame.font.Font(pygame.font.match_font("arial"), size=24)
 
     def draw(self):
         self.screen.fill(self.settings.background_colour)
@@ -79,7 +80,7 @@ class CalendarDashboard:
 
     def update(self):
         font = self.get_font()
-        font.set_point_size(32)
+        font.set_point_size(48)
         self.monthText = font.render(calendar.month_name[self.day_in_focus.month], antialias=True,
                                  color=self.settings.text_colour)
 
