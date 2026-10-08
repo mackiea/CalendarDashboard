@@ -69,3 +69,21 @@ class GoogleCalendar(SuperCalendar.SuperCalendar):
             .execute()
         )
         return Day(events=events_result.get("items", []), day=day)
+
+    def get_events_for_day(self, day) -> Day:
+        day_dt = datetime.datetime(tzinfo=tzlocal(), year=day.year, month=day.month, day=day.day)
+        day_iso = day_dt.isoformat()
+        tomorrow_iso = (day_dt + datetime.timedelta(hours=23, minutes=59)).isoformat()
+        events_result = (
+            self.service.events()
+            .list(
+                calendarId=self.family_calendar_id,
+                timeMin=day_iso,
+                timeMax=tomorrow_iso,
+                maxResults=10,
+                singleEvents=True,
+                orderBy="startTime",
+            )
+            .execute()
+        )
+        return Day(events=events_result.get("items", []), day=day.day)

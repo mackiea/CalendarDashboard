@@ -9,3 +9,8 @@ class SuperCalendar(ABC):
     @abstractmethod
     def get_events(self, day, day_in_focus)->Day:
         pass
+
+    @abstractmethod
+    def get_events_for_day(self, day)->Day:
+        pass
+
