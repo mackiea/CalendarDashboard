@@ -1,20 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5c921965-7878-43d7-a134-39536b67de38" name="Changes" comment="Added Week and Day mode.">
-      <change afterPath="$PROJECT_DIR$/src/View/DayView.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/View/MonthView.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/View/View.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/View/WeekView.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/View/__init__.py" afterDir="false" />
+    <list default="true" id="5c921965-7878-43d7-a134-39536b67de38" name="Changes" comment="Broke out month, week and day into view classes.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CalendarDashboard.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/CalendarDashboard.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Day.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/Day.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GoogleCalendar.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/GoogleCalendar.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/Settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SuperCalendar.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/SuperCalendar.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/caldash.sh" beforeDir="false" afterPath="$PROJECT_DIR$/caldash.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/script.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/script.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PrivacyPolicy.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ct.zip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ght.zip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/token.zip" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -276,7 +269,15 @@
       <option name="project" value="LOCAL" />
       <updated>1791420652233</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="Broke out month, week and day into view classes.">
+      <option name="closed" value="true" />
+      <created>1791506691996</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1791506691996</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -340,7 +341,8 @@
     <MESSAGE value="Added Adjusted Height setting b/c the target 1080p TV only shows fullscreen if it's init'ed to 1920x1200 (bottom is normally truncated)." />
     <MESSAGE value="Bad line added" />
     <MESSAGE value="Added Week and Day mode." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added Week and Day mode." />
+    <MESSAGE value="Broke out month, week and day into view classes." />
+    <option name="LAST_COMMIT_MESSAGE" value="Broke out month, week and day into view classes." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
