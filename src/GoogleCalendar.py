@@ -19,8 +19,8 @@ class GoogleCalendar(SuperCalendar.SuperCalendar):
         scopes = ["https://www.googleapis.com/auth/calendar.readonly"]
         # Load in Google API credentials.
         creds = None
-        if os.path.exists("token.json"):
-            creds = Credentials.from_authorized_user_file("token.json", scopes)
+        if os.path.exists("../token.json"):
+            creds = Credentials.from_authorized_user_file("../token.json", scopes)
         # If there are no (valid) credentials available, let the user log in.
         if not creds:
             flow = InstalledAppFlow.from_client_secrets_file("credentials.json", scopes)
@@ -28,7 +28,7 @@ class GoogleCalendar(SuperCalendar.SuperCalendar):
         if creds.expired and creds.refresh_token:
                 creds.refresh(Request())
         # Save the credentials for the next run
-        with open("token.json", "w") as token:
+        with open("../token.json", "w") as token:
             token.write(creds.to_json())
 
         self.service = build("calendar", "v3", credentials=creds)

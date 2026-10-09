@@ -1,14 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5c921965-7878-43d7-a134-39536b67de38" name="Changes" comment="Set dimensions back to 1080.">
-      <change afterPath="$PROJECT_DIR$/Day.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/GoogleCalendar.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Settings.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SuperCalendar.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/settings.xml" afterDir="false" />
+    <list default="true" id="5c921965-7878-43d7-a134-39536b67de38" name="Changes" comment="Added Week and Day mode.">
+      <change afterPath="$PROJECT_DIR$/src/View/DayView.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/View/MonthView.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/View/View.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/View/WeekView.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/View/__init__.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/script.py" beforeDir="false" afterPath="$PROJECT_DIR$/script.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CalendarDashboard.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/CalendarDashboard.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Day.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/Day.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GoogleCalendar.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/GoogleCalendar.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/Settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SuperCalendar.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/SuperCalendar.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/caldash.sh" beforeDir="false" afterPath="$PROJECT_DIR$/caldash.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/script.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/script.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,25 +63,30 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;Python.script.executor&quot;: &quot;Run&quot;,
-    &quot;Python.script2.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
-    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/toughie/CalendarDashboard&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "Python.script.executor": "Run",
+    "Python.script2.executor": "Run",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "codeWithMe.voiceChat.enabledByDefault": "false",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "/home/toughie/CalendarDashboard/src",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src" />
       <recent name="$PROJECT_DIR$" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/View" />
+      <recent name="$PROJECT_DIR$/src" />
     </key>
   </component>
   <component name="RunManager">
@@ -96,7 +107,7 @@
       <option name="DEBUG_JUST_MY_CODE" value="false" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="RUN_TOOL" value="" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/script.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/script.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -177,7 +188,95 @@
       <option name="project" value="LOCAL" />
       <updated>1788557095537</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Broke up code into something more structured; fixed off-by-one in allday events, settings now load from a file.">
+      <option name="closed" value="true" />
+      <created>1789601774618</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1789601774618</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Updated token.">
+      <option name="closed" value="true" />
+      <created>1789602038518</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1789602038518</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Updated token.">
+      <option name="closed" value="true" />
+      <created>1789604653427</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1789604653427</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Added screenshot.">
+      <option name="closed" value="true" />
+      <created>1789606067371</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1789606067371</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Added a usable README.">
+      <option name="closed" value="true" />
+      <created>1789606895061</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1789606895062</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Updated token.zip">
+      <option name="closed" value="true" />
+      <created>1790519764721</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1790519764721</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Screen mode query.">
+      <option name="closed" value="true" />
+      <created>1790709891811</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1790709891811</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Moved most functionality into a class.">
+      <option name="closed" value="true" />
+      <created>1790816524512</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1790816524513</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Added Adjusted Height setting b/c the target 1080p TV only shows fullscreen if it's init'ed to 1920x1200 (bottom is normally truncated).">
+      <option name="closed" value="true" />
+      <created>1790821205185</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1790821205185</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Bad line added">
+      <option name="closed" value="true" />
+      <created>1790821827582</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1790821827582</updated>
+    </task>
+    <task id="LOCAL-00017" summary="Added Week and Day mode.">
+      <option name="closed" value="true" />
+      <created>1791420652233</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1791420652233</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -231,25 +330,25 @@
     <MESSAGE value="Finished primary code. Calendar displays multiple events. Possible to switch to next &amp; previous months. Calendar auto-updates every minute." />
     <MESSAGE value="Set dimensions to 720p." />
     <MESSAGE value="Set dimensions back to 1080." />
-    <option name="LAST_COMMIT_MESSAGE" value="Set dimensions back to 1080." />
+    <MESSAGE value="Broke up code into something more structured; fixed off-by-one in allday events, settings now load from a file." />
+    <MESSAGE value="Updated token." />
+    <MESSAGE value="Added screenshot." />
+    <MESSAGE value="Added a usable README." />
+    <MESSAGE value="Updated token.zip" />
+    <MESSAGE value="Screen mode query." />
+    <MESSAGE value="Moved most functionality into a class." />
+    <MESSAGE value="Added Adjusted Height setting b/c the target 1080p TV only shows fullscreen if it's init'ed to 1920x1200 (bottom is normally truncated)." />
+    <MESSAGE value="Bad line added" />
+    <MESSAGE value="Added Week and Day mode." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added Week and Day mode." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/Day.py</url>
-          <line>6</line>
-          <option name="timeStamp" value="14" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/GoogleCalendar.py</url>
-          <line>70</line>
-          <option name="timeStamp" value="18" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/GoogleCalendar.py</url>
-          <line>57</line>
-          <option name="timeStamp" value="20" />
+          <url>file://$PROJECT_DIR$/src/CalendarDashboard.py</url>
+          <line>88</line>
+          <option name="timeStamp" value="33" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
