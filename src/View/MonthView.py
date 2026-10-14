@@ -64,6 +64,9 @@ class MonthView(View):
 
         self.draw_day_of_month_number(day=day.day, day_box=day_box)
         # Put events.
+        if len(self.month_days) < day.day:
+            print("Bad day value: " + str(day.day - 1))
+            return
         day_events = self.month_days[day.day - 1]
         line = 0
         for event in day_events.events:
